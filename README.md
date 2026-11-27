@@ -7,6 +7,15 @@ The pipeline is built almost entirely from **LangChain** components, while keepi
 the advanced parts: structure-aware chunking, hybrid search, LLM reranking,
 history-aware question rewriting, and proper math rendering.
 
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://langchain-pdf-rag-inyfl9gftucdkwcztx6czt.streamlit.app/)
+
+## Live demo
+
+The app is deployed on Streamlit Community Cloud:
+**https://langchain-pdf-rag-inyfl9gftucdkwcztx6czt.streamlit.app/**
+
+If the app asks for a password, enter the one set by the owner. If it shows a "wake up" screen, click the button and wait a moment: free apps go to sleep when unused.
+
 ## Run the app
 
 1. Clone the repository and open the folder:
@@ -102,7 +111,21 @@ indexed before this feature to include their images.
 
 - **Private chats:** every browser session gets a random id, and its chats are stored and listed only under that id. Visitors never see each other's chats. A page refresh starts a new session, so the previous session's chats are no longer shown.
 - **Password (optional):** add `APP_PASSWORD=your_password` to `.env` (or to Streamlit Cloud *Secrets* as `APP_PASSWORD = "your_password"`) and the app asks for it before showing anything. If it is not set, there is no password prompt, which is convenient for local use.
-- **Deploying on Streamlit Cloud:** set `GROQ_API_KEY`, `GOOGLE_API_KEY` and `APP_PASSWORD` in the app's *Secrets*. The server's disk is temporary, so saved chats and indexes are lost when the app restarts.
+## Deployment (Streamlit Community Cloud)
+
+1. Push the project to GitHub.
+2. On [share.streamlit.io](https://share.streamlit.io) click **Create app**, choose the repository, branch `main` and main file `app.py`.
+3. Under **Advanced settings**, pick Python **3.12** and paste your keys into **Secrets** (TOML format):
+
+```toml
+GROQ_API_KEY = "your_groq_key"
+GOOGLE_API_KEY = "your_google_ai_studio_key"
+APP_PASSWORD = "your_password"
+```
+
+4. Click **Deploy**. Later `git push` updates redeploy the app automatically.
+
+Note: the server's disk is temporary, so saved chats and indexes are lost when the app restarts.
 
 ## Notes
 
